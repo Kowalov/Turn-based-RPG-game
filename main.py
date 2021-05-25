@@ -199,6 +199,9 @@ while run:
             pygame.mouse.set_visible(False)
             #show short in place of mouse
             screen.blit(sword_img, pos)
+            if clicked == True:
+                attack = True
+                target = bandit_list[count]
 
 
 
@@ -209,9 +212,10 @@ while run:
             if action_cooldown >= action_wait_time:
                 #look for player action
                 #attack
-                knight.attack(bandit1)
-                current_fighter += 1
-                action_cooldown = 0
+                if attack == True and target != None:
+                    knight.attack(target)
+                    current_fighter += 1
+                    action_cooldown = 0
 
 
     #enemy action
@@ -234,6 +238,10 @@ while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            clicked = True
+        else:
+            clicked = False
 
     pygame.display.update()
 

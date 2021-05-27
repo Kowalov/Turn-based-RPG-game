@@ -1,5 +1,7 @@
 import pygame
 import random
+import button
+
 
 pygame.init()
 
@@ -21,7 +23,8 @@ total_fighters = 3
 action_cooldown = 0
 action_wait_time = 90
 attack = False
-potions = False
+potion = False
+potion_effect = 15
 clicked = False
 
 
@@ -39,6 +42,8 @@ background_img = pygame.image.load('img/background/background.png').convert_alph
 panel_img = pygame.image.load('img/icons/panel.png').convert_alpha()
 #sword image
 sword_img = pygame.image.load('img/icons/sword.png').convert_alpha( )
+#potion image
+potion_img = pygame.image.load('img/icons/potion.png').convert_alpha()
 
 #Drawing text
 def draw_text(text, font, text_col, x, y):
@@ -166,6 +171,9 @@ knight_health_bar = Healthbar(100, screen_hight - bottom_panel + 40, knight.hp, 
 bandit1_health_bar = Healthbar(550, screen_hight - bottom_panel + 40, bandit1.hp, bandit1.max_hp)
 bandit2_health_bar = Healthbar(550, screen_hight - bottom_panel + 100, bandit2.hp, bandit2.max_hp)
 
+#create buttons
+potion_button = button.Button(screen, 100, screen_hight - bottom_panel + 70, potion_img, 64, 64)
+
 run = True
 while run:
 
@@ -189,7 +197,7 @@ while run:
     #control player action
     #reset action variables
     attack = False
-    potions = False
+    potion = False
     target = None
     #make sure mouse if visible
     pygame.mouse.set_visible(True)
@@ -202,6 +210,10 @@ while run:
             if clicked == True:
                 attack = True
                 target = bandit_list[count]
+    if potion_button.draw():
+        potion = True
+    #show number of remaining potions
+    draw_text(str(knight.potions), font, red, 150, screen_hight - bottom_panel + 70)
 
 
 
@@ -216,6 +228,19 @@ while run:
                     knight.attack(target)
                     current_fighter += 1
                     action_cooldown = 0
+                #potion
+                if potion == True:
+                    if knight.potions > 0:
+                        #check if potion would heal above max health
+                        if knight.max_hp - knight.hp > potion_effect:
+                            heal_amount = potion_effect
+                        else:
+                            heal_amount = knight.max_hp - knight.hp
+                        knight.hp += heal_amount
+                        knight.potions -= 1
+                        current_fighter += 1
+                        action_cooldown = 0
+
 
 
     #enemy action

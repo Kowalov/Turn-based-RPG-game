@@ -183,6 +183,14 @@ class Fighter():
         self.frame_index = 0
         self.update_time = pygame.time.get_ticks()
 
+    def reset(self):
+        self.alive = True
+        self.potions = self.start_potions
+        self.hp = self.max_hp
+        self.frame_index = 0
+        self.action = 0
+        self.update_time = pygame.time.get_ticks()
+
 
 class Healthbar():
     def __init__(self, x, y, hp, max_hp):
@@ -362,7 +370,12 @@ while run:
         if game_over == -1:
             screen.blit(defeat_img, (290, 50))
         if restart_button.draw():
-            pass
+            knight.reset()
+            for bandit in bandit_list:
+                bandit.reset()
+            current_fighter = 1
+            action_cooldown = 0
+            game_over = 0
 
 
 

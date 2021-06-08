@@ -45,10 +45,10 @@ Project finished
 ## Inspiration
 Inspired by youtube channel:  Coding With Russ
 Animations images downloaded from the following links:
-*https://lionheart963.itch.io/knight-sprite
-*https://sventhole.itch.io/bandits
-*https://cheekyinkling.itch.io/shikashis-fantasy-icons-pack
-*https://edermunizz.itch.io/free-pixel-art-forest
+https://lionheart963.itch.io/knight-sprite
+https://sventhole.itch.io/bandits
+https://cheekyinkling.itch.io/shikashis-fantasy-icons-pack
+https://edermunizz.itch.io/free-pixel-art-forest
 
 ## Contact
 [@Piotr Kowalewski]- feel free to contact me!

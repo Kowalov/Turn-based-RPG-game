@@ -16,9 +16,9 @@ Turn based game created using Pygame module. Player has option to attack enemies
 or heal themself. 
 
 ## Screenshots
-![Game window1](./img/screen1.PNG)
-![Game window2](./img/screen2.PNG)
-![Game window3](./img/screen3.PNG)
+![Game window1](./SC/screen1.PNG)
+![Game window2](./SC/screen2.PNG)
+![Game window3](./SC/screen3.PNG)
 
 ## Technologies
 * Python - version 3.7
